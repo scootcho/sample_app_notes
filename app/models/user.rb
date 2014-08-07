@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   private
 
     def create_remember_token
-      self.remember_token = User.digest(User.new_remember_token)
+      self.remember_token = User.digest(User.new_remember_token)  #creates a hashed remember_token in the db. Not in cookies.
     end
 end
