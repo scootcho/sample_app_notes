@@ -1,24 +1,28 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update]      #only edit and update actions are available if the user is signed_in_user.
+  before_action :signed_in_user, only: [:index, :edit, :update]      #only index, edit and update actions are available if the user is signed_in_user.
   before_action :correct_user,   only: [:edit, :update]      #only edit and update actions are available if the user is correct_user.
+
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
   end
 
   def new
-  	@user = User.new
+    @user = User.new
   end
 
   def create
-  	@user = User.new(user_params)
-  	if @user.save
+    @user = User.new(user_params)
+    if @user.save
       sign_in @user
-  		flash[:success] = "Welcome to the Sample App!"
-  		redirect_to @user
-  	else
-  		render 'new'
-  	end
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user
+    else
+      render 'new'
+    end
   end
 
   def edit
