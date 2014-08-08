@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update]      #only index, edit and update actions are available if the user is signed_in_user.
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]      #only index, edit and update actions are available if the user is signed_in_user.
   before_action :correct_user,   only: [:edit, :update]      #only edit and update actions are available if the user is correct_user.
+  before_action :admin_user,     only: :destroy
 
   def index
     @users = User.paginate(page: params[:page])
@@ -39,10 +40,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to users_url
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)  #note :admin is not included here because the lis here is for permitted attributes
     end
 
       # Before filters
@@ -57,5 +64,9 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 end
