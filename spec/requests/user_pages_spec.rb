@@ -5,19 +5,26 @@ describe "User pages" do
   subject { page }
 
   describe "index" do
-    before do   
-      sign_in FactoryGirl.create(:user)       #create 1st user using exisitng :user in factories.rb
-      FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")  #create 2nd user
-      FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")  #create 3rd user
-      visit users_path   #visit the users index. (note plural path instead of singular)
+    let(:user) { FactoryGirl.create(:user) }
+    before(:each) do
+      sign_in user
+      visit users_path
     end
 
-    it { should have_title('All users') }  #index shoud have title
-    it { should have_content('All users') }   #index shoud have content
+    it { should have_title('All users') }
+    it { should have_content('All users') }
 
-    it "should list each user" do
-      User.all.each do |user|  
-        expect(page).to have_selector('li', text: user.name)  #iterate through all li tags and test for different names. Rspec + Capybara test - have_selector('selector', text: "sometext") 
+    describe "pagination" do
+
+      before(:all) { 30.times { FactoryGirl.create(:user) } }
+      after(:all)  { User.delete_all }
+
+      it { should have_selector('div.pagination') }
+
+      it "should list each user" do
+        User.paginate(page: 1).each do |user|
+          expect(page).to have_selector('li', text: user.name)
+        end
       end
     end
   end

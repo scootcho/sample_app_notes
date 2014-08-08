@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]      #only edit and update actions are available if the user is correct_user.
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def show
