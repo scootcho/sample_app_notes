@@ -20,6 +20,13 @@ describe User do
   it { should respond_to(:microposts) }
   it { should respond_to(:feed) }
   it { should respond_to(:relationships) }
+  it { should respond_to(:followed_users) }              #followed_users is defined in user.rb
+  it { should respond_to(:reverse_relationships) }
+  it { should respond_to(:followers) }
+  it { should respond_to(:following?) }
+  it { should respond_to(:follow!) }
+  it { should respond_to(:unfollow!) }
+
 
   it { should be_valid }
   it { should_not be_admin }
@@ -159,5 +166,28 @@ describe User do
       its(:feed) { should include(older_micropost) }
       its(:feed) { should_not include(unfollowed_post) }
     end   
+  end
+
+  describe "following" do
+    let(:other_user) { FactoryGirl.create(:user) }   #this other_user is created using factory
+    before do
+      @user.save      #this @user is created from line 6
+      @user.follow!(other_user)     #this passed the follwo! method in user.rb and @user(follower_id/foreign key) follows other_user(followed_id)
+    end
+
+    it { should be_following(other_user) }
+    its(:followed_users) { should include(other_user) }
+
+    describe "followed user" do
+      subject { other_user }
+      its(:followers) { should include(@user) }
+    end
+
+    describe "and unfollowing" do
+      before { @user.unfollow!(other_user) }    #unfollow! method is written in user.rb
+
+      it { should_not be_following(other_user) }
+      its(:followed_users) { should_not include(other_user) }
+    end
   end
 end
