@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]      #only index, edit and update actions are available if the user is signed_in_user.
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :follwers]      #only index, edit and update actions are available if the user is signed_in_user.
   before_action :correct_user,   only: [:edit, :update]      #only edit and update actions are available if the user is correct_user.
   before_action :admin_user,     only: :destroy
 
@@ -45,6 +45,20 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User deleted."
     redirect_to users_url
+  end
+
+  def following
+    @title = "Following"     #define the @title here so it can be passed to views
+    @user = User.find(params[:id])
+    @users = @user.followed_users.paginate(page: params[:page])
+    render 'show_follow'    #rendering in the controller won't require a partial. This method will use the URL users/1/follwing with the "show_follow" template
+  end
+
+  def followers
+    @title = "Followers"      #define the @title here so it can be passed to views
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'     #rendering in the controller won't require a partial. This method will use the URL users/1/follwers with the "show_follow" template
   end
 
   private
