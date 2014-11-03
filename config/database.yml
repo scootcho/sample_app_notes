@@ -1,23 +1,23 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: project_development
+  database: sample_app_development
   pool: 5
-  username: 
-  password:
+  username: revbox 
+  password: r3Vb0x
 
 test: &TEST
   adapter: postgresql
   encoding: utf8
-  database: project_test
+  database: sample_app_test
   pool: 5
-  username: 
-  password:
+  username: revbox
+  password: r3Vb0x
 
 production:
   adapter: postgresql
   encoding: utf8
-  database: project_production
+  database: sample_app_production
   pool: 5
-  username: 
-  password:
+  username: revbox
+  password: r3Vb0x
