@@ -17,6 +17,7 @@
     </div>
   </div>
 <% else %>
+  <div id="backdrop">
   <div class="center hero-unit">
     <h1>Welcome to the Sample App</h1>
 
@@ -25,10 +26,10 @@
       <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
       sample application.
     </h2>
-
     <%= link_to "SIGN ME UP!", signup_path,
                                 class: "signupbtn" %>
   </div>
 
   <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+  </div>
 <% end %>
