@@ -18,16 +18,22 @@
   </div>
 <% else %>
   <div id="backdrop">
-  <div class="center hero-unit">
-    <h1>Sample Social Network App</h1>
-    <br/>
-    <h2>connect with your friends and start conversations here</h2>
-    <%= link_to "SIGN ME UP!", signup_path,
-                                class: "signupbtn" %>
-  <div class="made">
-  <p>made with <i class="fa fa-heart"></i> and
-  <%= link_to image_tag("rails.png", alt: "Rails", :class => "railsimg"), 'http://rubyonrails.org/' %> </p>
-  </div>
-  </div>
+    <div class="center hero-unit">
+      <h1>Sample Social Network App</h1>
+      <br/>
+      <h2>connect with your friends and start conversations here</h2>
+      <%= link_to "SIGN ME UP!", signup_path, class: "signupbtn" %>
+
+      <div id="bquote">
+        <p>
+          "Sometimes you have to disconnect to stay connected. Remember the old days when you had eye contact during a conversation? When everyone wasn't looking down at a device in their hands? We've become so focused on that tiny screen that we forget the big picture, the people right in front of us." - Regina Brett
+        </p>
+      </div>
+
+      <div class="made">
+        <p>made with <i class="fa fa-heart"></i> and
+        <%= link_to image_tag("rails.png", alt: "Rails", :class => "railsimg"), 'http://rubyonrails.org/' %> </p>
+      </div>
+    </div>
   </div>
 <% end %>

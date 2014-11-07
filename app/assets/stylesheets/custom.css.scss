@@ -71,6 +71,7 @@ p {
 /* homepage */
 
 #backdrop {
+  overflow: hidden; 
   background-image: url("/sun.jpg");
   top: 0; 
   left: 0; 
@@ -118,6 +119,24 @@ p {
   text-decoration: none;
 }
 
+#bquote {
+  width: 60%;
+  margin-top: 5%;
+  overflow: auto;
+  p {
+    font-weight: lighter;
+    font-size: 16px;
+    color: #fff;
+    background: #000;
+    opacity: 0.5;
+    padding: 5px;
+    border-radius: 5px;   
+}
+
+
+
+}
+
 .made {
   position: absolute;
   bottom: 5%;
@@ -136,21 +155,24 @@ p {
 
 /* header */
 
-#logo {
+.logobox {
+  font-size: 1.5em;
   float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  line-height: 1;
-  &:hover {
+  width: 200px;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 5px;
+  a {
     color: white;
+    letter-spacing: -1px;
     text-decoration: none;
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
   }
 }
+
 
 /* footer */
 
@@ -181,6 +203,7 @@ footer {
 /* miscellaneous */
 
 .debug_dump {
+  position: relative;
   clear: both;
   float: left;
   width: 100%;
