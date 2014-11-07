@@ -43,9 +43,11 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  font-family: 'Gotham_SSm_3r',Helvetica,Arial,sans-serif;
 }
 
 h1 {
+  font-weight: lighter;
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -69,7 +71,7 @@ p {
 /* homepage */
 
 #backdrop {
-  background-image: url("/people.jpg");
+  background-image: url("/sun.jpg");
   top: 0; 
   left: 0; 
   right: 0; 
@@ -79,10 +81,22 @@ p {
   position: absolute; 
 }
 
-.center.hero-unit{
 
+.center.hero-unit {
+  background: transparent;
+  h1{
+    margin-top: 15%;
+    color: #fff;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.75);
+  }
+  h2 {
+    color: #000;
+    font-weight: lighter;
+  }
 }
 
+
+.center.hero-unit 
 .signupbtn {
   display:block;
   margin: auto;
@@ -104,7 +118,19 @@ p {
   text-decoration: none;
 }
 
-
+.made {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  p {
+    color: #fff;
+    font-size: 15px;
+  }
+ .railsimg {
+  width: 40px;
+  height: auto;
+  }
+}
 
 
 

@@ -19,17 +19,15 @@
 <% else %>
   <div id="backdrop">
   <div class="center hero-unit">
-    <h1>Welcome to the Sample App</h1>
-
-    <h2>
-      This is the home page for the
-      <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-      sample application.
-    </h2>
+    <h1>Sample Social Network App</h1>
+    <br/>
+    <h2>connect with your friends and start conversations here</h2>
     <%= link_to "SIGN ME UP!", signup_path,
                                 class: "signupbtn" %>
+  <div class="made">
+  <p>made with <i class="fa fa-heart"></i> and
+  <%= link_to image_tag("rails.png", alt: "Rails", :class => "railsimg"), 'http://rubyonrails.org/' %> </p>
   </div>
-
-  <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+  </div>
   </div>
 <% end %>
